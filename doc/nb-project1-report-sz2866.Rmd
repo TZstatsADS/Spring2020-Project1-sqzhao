@@ -2,7 +2,9 @@
 title: "Take a Closer Look at Happy Songs"
 author: "Siqi Zhao (sz2866)"
 date: "2/5/2020"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r package install, message=FALSE, warning=FALSE, echo=FALSE}
@@ -69,7 +71,7 @@ In this project, I want to tell a data story about happy music songs. Music acco
 
 Based on lyrics, to investigate the happiest genre, I started with sentiment analysis. I used the given stemmed lyrics since for sentiment analysis, the cleansed stop words do not carry much emtion and are irrelevant from the analysis. 
 
-Then consider how to define a song is happy? Each song contains a mixture of different sentiments. In my opinion, when the joy sentiment takes the greatest portion in a song, I considered it  a happy song and used this definition afterwards. The sentiments of the stemmed keywords are according to the NRC Lexion in this project.
+Then consider how to define a song is happy? Each song contains a mixture of different sentiments. In my opinion, when the joy sentiment takes the greatest portion in a song, I considered it  a happy song. I used this definition hereinafter. The sentiments of the stemmed keywords are according to the NRC Lexion in this project.
 
 The following table gives some examples of the identified major emotion of a song added to the data frame for further analyses.
 
@@ -143,11 +145,11 @@ After sentiment analysis was completed, I made a bar plot, as above, to see how 
 
 Then I want to investigate more and compare the top 2 happiest genre: Jazz and R&B, according to the plot above. 
 
-# 2. Focused on the top 2 happiest genres and their "joy" songs: 
+# 2. Focused on the Top 2 Happiest Genres and Their "Joy" Songs: 
 ### - Are they similar or different? 
 
-### 2.1 Overview of the most frequent word   
-To get an overall understanding of the "joy" emotion songs of Jazz and R&B genre, I first take a look at the most frequently used words through wordclouds.
+### 2.1 Overview of the most frequent words   
+To get an overall understanding of the "joy" emotion songs of Jazz and R&B, I firstly took a look at the most frequently used words through wordclouds.
 
 ```{r Wordclouds, echo=F}
 
@@ -173,7 +175,7 @@ short500.tokenized.joy <- tokenized.word.joy %>% filter(genre %in% c("Jazz", "R&
   head(500)
 ```
 
-**For "joy" Jazz and R&B genres:**  
+**For Jazz and R&B with joy emotion:**  
 ```{r, echo=F}
 ## For Jazz and R&B:
 #wordcloud2(short500.tokenized.joy, color = "firebrick", size=1)
@@ -187,7 +189,7 @@ wordcloud(short500.tokenized.joy$word, short500.tokenized.joy$n,
           colors="firebrick")
 ```
 
-**For Jazz:**  
+**For Jazz with joy emotion:**  
 ```{r, echo=F}
 ## For Jazz:
 Jazz.joy.word <- tokenized.word.joy %>% filter(genre == "Jazz")
@@ -203,7 +205,7 @@ wordcloud(short500.Jazz$word, short500.Jazz$n,
           colors="gold")
 ```
 
-**For R&B:**  
+**For R&B with joy emotion:**  
 ```{r, echo=F}
 ## For R&B:
 RnB.joy.word <- tokenized.word.joy %>% filter(genre == "R&B")
@@ -219,13 +221,13 @@ wordcloud(short500.RnB$word, short500.RnB$n,
           colors="darkorchid")
 ```
 
-From the wordcloud plots, I found that Jazz and R&B used similar key stemmed words to express joy. No matter I look from a single genre alone or two genres combined, love, baby, heart, etc all appear to be among the most frequent words in all the wordcloud plots above. This finding motivates me think about how similar their song topics are under the joy category. Are these joy songs not only have same emotions, but also use similar topics? Are people singing about the same joyful topic for different genres?
+From the wordcloud plots, I found that Jazz and R&B used similar key words to express joy. No matter I looked from a single genre alone or two genres combined, love, baby, heart, etc all appear to be among the most frequent words in all the wordcloud plots above. This finding motivated me think about how similar their song topics are under the joy category. Are these joy songs not only have same emotions, but also about similar topics? Are people singing about the same joyful topic for different genres?
 
 With this question in mind, I then continued doing topic modelling to solve my questions.
 
-### 2.2 Topic modelling
+### 2.2 Topic Modelling
 
-Before doing topic modelling, I converted the stemmed word data from data frame back to Corpus to generate the [document-term matrix](https://en.wikipedia.org/wiki/Document-term_matrix). Then I adopted the [LDA(Latent Dirichlet Allocation)](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) method to allocate topics describing these joy Jazz and R&B songs. The number of topics selected is by trial and error such that meaningful topics can be inferred from the grouped keywords. Finally, I selected the topic number as seven.
+Before doing topic modelling, I converted the stemmed word data from data frame back to Corpus to generate the [document-term matrix](https://en.wikipedia.org/wiki/Document-term_matrix). Then I adopted the [LDA(Latent Dirichlet Allocation)](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) method to allocate topics describing these joy Jazz and R&B songs. The number of topics selected was chosen by trial and error such that meaningful topics can be inferred from the grouped keywords. Finally, I selected the topic number as seven.
 
 After running LDA, based on the result, I manually hashtagged topics according to their corresponding most popular and  most salient terms. For example, for the Topic 3, which is of interest later, I labelled it as "Love" since "woman", "babe", "dear", "thrill" etc. are the keywords for this topic.
 
@@ -321,9 +323,9 @@ ggplot(long.topic.summary, aes(x="", y=probability, fill=genre)) +
   )
 ```
 
-From the above plot, I can see how Jazz and R&B songs distributed among these summarized topics. The most obvious is that, in percentage, R&B has more happy love songs than Jazz. For other topics, Jazz and R&B have roughly the same portion of songs.
+From the above plot, I can see how Jazz and R&B songs distributed among these summarized topics. The most obvious is that, in percentage, R&B has more happy love songs than Jazz. For other topics, Jazz and R&B portions do not vary that much. (Jazz is slightly more focused on family, youth life, and state of mind. This part does not discuss here.)
 
-In summary, the most noticeable discovery is: relatively, even if Jazz has more songs with joyful emotion than R&B, yet R&B focuses more on the love topic than Jazz. Despite this moderate difference in love topic, these two genres roughly have the same percentage of happy songs on other topics. This high similarity in terms of topics explained the high similarity in the frequent keywords shown in wordclouds, since vocabularies would not vary much under the same/similar topics.
+In summary, the most noticeable discovery is: relatively, even if Jazz has more songs with joyful emotion than R&B, R&B focuses more on the love topic than Jazz. Since there is no significant variance in the topic distribution, there should be high similarity in the frequent keywords, with common sense that vocabularies would not vary much under the same/similar topics. This inference coincided with the above wordclouds.
 
 ### 2.3 Lyrics Manifestation
 Besides the keywords and topics of a song, the pattern of lyrics also plays an important role in expressing happiness. In this section, I focused on the repetitiveness of lyrics. And I analysed the difference between Jazz and R&B joy songs from this perspective.
@@ -331,7 +333,7 @@ Besides the keywords and topics of a song, the pattern of lyrics also plays an i
 **Why is the repetitiveness of lyrics important?  **   
   Repetition is very important in music, where melody and lyrics are often repeated. However, the level of the repetitiveness of songs varies a lot. For example, if a song is mostly narrative, then it is less repetitive than non-narrative songs. With high repetitiveness, even though storytelling ability is sacrificed, On the other hand, these repetitive lyrics [assit memory and help drive market success](https://pudding.cool/2017/05/song-repetition/). 
 
-Then let me investigate how repetitive are joy Jazz and R&B lyrics?
+Then let me investigate how repetitive are joy Jazz and R&B lyrics.
 
 ```{r, echo=F}
 # Count and Compare the Repetitiveness of Stemmed Lyrics
@@ -363,7 +365,7 @@ ggplot(count.df, aes(x=rep.ratio)) +
   )
 ```
 
-R&B and Jazz in term of happy songs, their lyrics repetition ratios do not differ that much according to the plot. On average, R&B songs has lightly over 47.2% of repetition, and Jazz music has 40.4% of repetition. However, considering stop words were filtered out in advance, the actual repetition ratio should be a lot larger than the current result. In summary, R&B songs are more repetitive and easy to remember as a result of high repetitiveness than Jazz. As a result, R&B songs are easy to become popular. This could be used to support why R&B is far more popular than Jazz in the current music market, as analysed by [Statista](https://www.statista.com/statistics/442354/music-genres-preferred-consumers-usa/).
+R&B and Jazz in term of happy songs, their lyrics repetition ratios do not differ that much according to above density plot. On average, R&B songs has lightly over 47.2% of repetition, and Jazz music has 40.4% of repetition. However, considering stop words were filtered out in advance, the actual repetition ratio should be a lot larger than the current result. In summary, R&B songs are more repetitive and easy to remember as a result of high repetitiveness than Jazz. As a result, R&B songs are easy to become popular. This could be used to support why R&B is far more popular than Jazz in the current music market, as analysed by [Statista](https://www.statista.com/statistics/442354/music-genres-preferred-consumers-usa/).
 
 ![](../figs/genresRank.png "Music Popularity Rank")
 
