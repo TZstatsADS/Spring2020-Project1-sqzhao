@@ -15,8 +15,8 @@ Term: Spring 2020
 + Project summary: 
 This project wants to find happiest genre
     - On the genre level, I discovered that Jazz is the happiest genre through sentiment analysis. 
-    - Compared the two happiest genres: Jazz and R&B. Under the same sentiment - Joy, I investigated the similarity and differences of happy Jazz and R&B songs from the following perpectives:
-        * Using wordclouds, try to find out if there's similarity/differences in keywords used.
+    - Compared the two happiest genres: Jazz and R&B. Under the same sentiment - Joy, I investigated the similarities and differences of happy Jazz and R&B songs from the following perpectives:
+        * Using wordclouds, try to find out if there's similarity in keywords.
         * Using topic modelling, try to find out what topics Jazz and R&B are writing about under the joy category; and to discover which topic they focused on more.
         * Try to find out the lyrics repetitiveness pattern of the two genres under joy emotion. And try to relate the result to their market success.
 
@@ -25,7 +25,7 @@ This project wants to find happiest genre
     - Compare happy songs between Jazz and R&B:
         * they are using a similar set of keywords to express joy: such as love, baby, heart, etc.
         * R&B has more happy love songs than Jazz, even though Jazz has more happy songs than R&B.
-        * For happy songs, R&B lyrics are more repetitive than Jazz lyrics, which aids in memory and popularity of the songs. This may probably be one of the reasons that R&B is more popular than Jazz.
+        * For happy songs, R&B lyrics are more repetitive than Jazz lyrics, which aids in memory and popularity of the songs. This might probably be one of the reasons that R&B is more popular than Jazz.
 
 
 
