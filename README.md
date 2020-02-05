@@ -1,7 +1,7 @@
 # Applied Data Science @ Columbia
 ## Spring 2020
 ## Project 1: A "data story" on the songs of our times
-
+## Title: Take a Closer Look at Happy Songs
 <img src="figs/feel-good.jpg" width="500">
 
 ### [Project Description](doc/)
@@ -14,8 +14,8 @@ Term: Spring 2020
 
 + Project summary: 
 This project focuses on finding the happiest songs.
-    1. On the genre level, I discovered that Jazz is the happiest genre through sentiment analysis. 
-    2. Compare the two happiest genre: Jazz and R&B. Under the same sentiment - Joy, I investigated the similarity and differences of happy Jazz and R&B song from the following perpectives:
+    - On the genre level, I discovered that Jazz is the happiest genre through sentiment analysis. 
+    - Compare the two happiest genre: Jazz and R&B. Under the same sentiment - Joy, I investigated the similarity and differences of happy Jazz and R&B song from the following perpectives:
         * Using wordclouds to find out similarity & differences in keywords used.
         * Using topic modelling to find out what topics, under the joy emotion, Jazz and R&B are writing about; and to discover which topic they focused on more.
         * Find out the lyrics repetitiveness pattern of the two genres under Joy. And relate the result to their market success.
