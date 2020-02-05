@@ -13,7 +13,7 @@ Term: Spring 2020
 + This project is conducted by Siqi Zhao(sz2866).
 
 + Project summary: 
-This project wants to find happiest genres and songs.
+This project wants to find happiest genre
     - On the genre level, I discovered that Jazz is the happiest genre through sentiment analysis. 
     - Compared the two happiest genres: Jazz and R&B. Under the same sentiment - Joy, I investigated the similarity and differences of happy Jazz and R&B songs from the following perpectives:
         * Using wordclouds, try to find out if there's similarity/differences in keywords used.
