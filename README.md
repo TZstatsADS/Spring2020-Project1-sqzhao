@@ -13,12 +13,12 @@ Term: Spring 2020
 + This project is conducted by Siqi Zhao(sz2866).
 
 + Project summary: 
-This project focuses on finding the happiest songs.
+This project wants to find happiest genres and songs.
     - On the genre level, I discovered that Jazz is the happiest genre through sentiment analysis. 
-    - Compare the two happiest genre: Jazz and R&B. Under the same sentiment - Joy, I investigated the similarity and differences of happy Jazz and R&B song from the following perpectives:
-        * Using wordclouds to find out similarity & differences in keywords used.
-        * Using topic modelling to find out what topics, under the joy emotion, Jazz and R&B are writing about; and to discover which topic they focused on more.
-        * Find out the lyrics repetitiveness pattern of the two genres under Joy. And relate the result to their market success.
+    - Compared the two happiest genres: Jazz and R&B. Under the same sentiment - Joy, I investigated the similarity and differences of happy Jazz and R&B songs from the following perpectives:
+        * Using wordclouds, try to find out if there's similarity/differences in keywords used.
+        * Using topic modelling, try to find out what topics Jazz and R&B are writing about under the joy category; and to discover which topic they focused on more.
+        * Try to find out the lyrics repetitiveness pattern of the two genres under joy emotion. And try to relate the result to their market success.
 
 + Project conclusion:
     - The happiest genre is Jazz. Besides, joy is the most popular emotion among nearly all genres, except for Metal and Hip-Hop. 
